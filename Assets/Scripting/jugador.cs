@@ -3,6 +3,8 @@ using logica_de_jugado;
 using UnityEngine;
 
 // el UnityEngine es un namespace 
+//el namespace sirve para organizar el codigo completo 
+// se crea los bloques con extenciones 
 
 namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace 
 {
@@ -29,6 +31,7 @@ namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace
         {
 
         }
+    #region Mundo 
     namespace herramientas
     {
         namespace calculos
@@ -50,6 +53,7 @@ namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace
             }
         }
     }
+#endregrion 
 
 namespace logica_de_saltar
     {

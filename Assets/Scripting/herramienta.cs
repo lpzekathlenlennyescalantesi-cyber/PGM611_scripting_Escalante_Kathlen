@@ -9,8 +9,6 @@ namespace herramientas.conectividad
         public int vida;
         public int calculoPuntaje()
         {
-
         }
-
     }
 }
