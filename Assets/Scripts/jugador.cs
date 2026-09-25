@@ -2,14 +2,13 @@ using logica_de_enemigo.herramientas.calculos;
 using logica_de_jugado;
 using UnityEngine;
 
-// el UnityEngine es un namespace 
-//el namespace sirve para organizar el codigo completo 
-// se crea los bloques con extenciones 
+// el UnityEngine es un namespace
+// el namespace sirve para organizar el codigo completo
+// se crea los bloques con extensiones
 
-namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace 
+namespace logica_de_jugado
 {
-
-    public class jugador : MonoBehaviour // : MonoBehaviour es que lo que esta adelante de este es el hijo y el mono es el padre 
+    public class jugador : MonoBehaviour
     {
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -24,14 +23,16 @@ namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace
         }
     }
 }
- namespace logica_de_enemigo
+
+namespace logica_de_enemigo
+{
+    public class Enemigo : MonoBehaviour
     {
 
-        public class Enemigo : MonoBehaviour
-        {
+    }
 
-        }
-    #region Mundo 
+    #region Mundo
+
     namespace herramientas
     {
         namespace calculos
@@ -44,7 +45,7 @@ namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace
                 }
             }
         }
-    }
+
         namespace conectividad
         {
             public partial class Herramienta
@@ -53,9 +54,10 @@ namespace logica_de_jugado // dentro de namespace se puede crear mucho namespace
             }
         }
     }
-#endregrion 
 
-namespace logica_de_saltar
+    #endregion
+
+    namespace logica_de_saltar
     {
         namespace caminar
         {
@@ -67,7 +69,7 @@ namespace logica_de_saltar
                 {
                     Ejemplo e;
                 }
-
             }
         }
     }
+}
