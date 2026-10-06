@@ -1,75 +1,78 @@
-using logica_de_enemigo.herramientas.calculos;
-using logica_de_jugado;
 using UnityEngine;
 
-// el UnityEngine es un namespace
-// el namespace sirve para organizar el codigo completo
-// se crea los bloques con extensiones
-
-namespace logica_de_jugado
+public class Jugador : MonoBehaviour
 {
-    public class jugador : MonoBehaviour
+    [Header("Movimiento")]
+    public float velocidad = 5f;
+
+    [Header("Salto")]
+    public float alturaSalto = 4f;
+
+    [Header("Comprobación del piso")]
+    public Transform comprobadorPiso;
+    public float radio = 0.1f;
+    public LayerMask layerPiso;
+
+    private Rigidbody2D rb;
+    private float movimiento;
+    private bool esPiso;
+
+    void Start()
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-    }
-}
-
-namespace logica_de_enemigo
-{
-    public class Enemigo : MonoBehaviour
-    {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    #region Mundo
-
-    namespace herramientas
+    void Update()
     {
-        namespace calculos
+        // Movimiento horizontal
+        movimiento = Input.GetAxisRaw("Horizontal");
+
+        rb.linearVelocity = new Vector2(
+            movimiento * velocidad,
+            rb.linearVelocity.y
+        );
+
+        // Girar personaje
+        if (movimiento != 0)
         {
-            public class Ejemplo
-            {
-                public void metodoEjemplo()
-                {
-                    jugador j;
-                }
-            }
+            transform.localScale = new Vector3(
+                Mathf.Sign(movimiento),
+                1,
+                1
+            );
         }
 
-        namespace conectividad
+        // Salto
+        if (Input.GetButtonDown("Jump") && esPiso)
         {
-            public partial class Herramienta
-            {
-
-            }
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                alturaSalto
+            );
         }
     }
 
-    #endregion
-
-    namespace logica_de_saltar
+    void FixedUpdate()
     {
-        namespace caminar
+        // Comprobar si está sobre el piso
+        if (comprobadorPiso != null)
         {
-            using herramientas.calculos;
+            esPiso = Physics2D.OverlapCircle(
+                comprobadorPiso.position,
+                radio,
+                layerPiso
+            );
+        }
+    }
 
-            public class caminar
-            {
-                public void metodo_caminar()
-                {
-                    Ejemplo e;
-                }
-            }
+    private void OnDrawGizmosSelected()
+    {
+        if (comprobadorPiso != null)
+        {
+            Gizmos.DrawWireSphere(
+                comprobadorPiso.position,
+                radio
+            );
         }
     }
 }
